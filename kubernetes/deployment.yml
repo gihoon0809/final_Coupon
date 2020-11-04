@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Coupon
+  name: coupon
   labels:
-    app: Coupon
+    app: coupon
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Coupon
+      app: coupon
   template:
     metadata:
       labels:
-        app: Coupon
+        app: coupon
     spec:
       containers:
-        - name: Coupon
-          image: username/Coupon:latest
+        - name: coupon
+          image: username/coupon:latest
           ports:
             - containerPort: 8080
           readinessProbe:

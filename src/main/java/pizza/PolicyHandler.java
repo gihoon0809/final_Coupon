@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PolicyHandler{
+
+    //LDH 소스추가
+    @Autowired
+    CouponRepository CouponRepository;
+
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){
 
@@ -19,6 +24,11 @@ public class PolicyHandler{
     public void wheneverDelivered_PublishCoupon(@Payload Delivered delivered){
 
         if(delivered.isMe()){
+
+            //소스추가 LDH
+            Coupon coupon = new Coupon();
+            CouponRepository.save(coupon);
+
             System.out.println("##### listener PublishCoupon : " + delivered.toJson());
         }
     }
